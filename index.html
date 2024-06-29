@@ -93,7 +93,24 @@
          </section>
         </main>
 
-
+        <h1>Patient Data</h1>
+        <button id="fetchData">Fetch Patient Data</button>
+        <div id="portfoliodata"></div>
+      
+        <script>
+          document.getElementById('fetchData').addEventListener('click', async () => {
+            try {
+              const response = await fetch('http://localhost:3000/portfoliodata');
+              const data = await response.json();
+              
+              const portfoliodatadiv = document.getElementById('portfoliodata');
+              portfoliodatadiv.innerHTML = JSON.stringify(data, null, 2); // Pretty-print JSON data
+              
+            } catch (error) {
+              console.error('Error fetching portfolio data:', error);
+            }
+          });
+        </script>
 
 </body>
 </html>

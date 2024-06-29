@@ -4,15 +4,20 @@
   "description": "",
   "main": "scripts.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node mongoapi.js",
     "dev": "node scripts.js"
-    
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
-    "express": "^4.19.2"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongo": "^0.1.0",
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.4.4",
+    "stripe": "^16.1.0"
   }
 }
