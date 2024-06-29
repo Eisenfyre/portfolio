@@ -98,19 +98,40 @@
         <div id="portfoliodata"></div>
       
         <script>
-          document.getElementById('fetchData').addEventListener('click', async () => {
-            try {
-              const response = await fetch('http://localhost:3000/portfoliodata');
-              const data = await response.json();
-              
-              const portfoliodatadiv = document.getElementById('portfoliodata');
-              portfoliodatadiv.innerHTML = JSON.stringify(data, null, 2); // Pretty-print JSON data
-              
-            } catch (error) {
-              console.error('Error fetching portfolio data:', error);
-            }
-          });
-        </script>
+            document.getElementById('fetchData').addEventListener('click', async () => {
+              try {
+                const response = await fetch('http://localhost:3000/portfoliodata');
+                const data = await response.json();
+                
+                const workContainer = document.getElementById('work-container');
+          
+                data.forEach(item => {
+                  const workTemplate = document.createElement('div');
+                  workTemplate.className = 'work-template';
+          
+                //   const img = document.createElement('img');
+                //   img.src = item.image;
+                //   img.alt = 'img';
+          
+                  const title = document.createElement('p');
+                  title.id = 'title';
+                  title.textContent = item.name;
+
+                const desc = document.createElement('p');
+                desc.id = 'desc';
+                desc.textContent = item.description;
+
+                workTemplate.appendChild(title);
+                workTemplate.appendChild(desc);
+
+                workContainer.appendChild(workTemplate);
+            });
+
+} catch (error) {
+console.error('Error fetching portfolio data:', error);
+}
+});
+</script>
 
 </body>
 </html>
