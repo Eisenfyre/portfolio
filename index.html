@@ -13,6 +13,14 @@
 <body>
 
     <style>
+                .work-template {
+                    width: 200px;
+                    height: 100px;
+                    background-color: aliceblue;
+                    border-radius: 10px;
+                    border: 1.5px solid black;
+                }
+      
         body {
             background-color: wheat;
         }
@@ -73,47 +81,44 @@
          <section>
             <h3>My work</h3>
             <br>
-
-            <div id="work-container">
-                <img style="width: 50px;  object-fit: cover;" src="/people + story screen.jpg" alt=" img">
-                <p id="title">Hospital Api</p>
-                <p id="desc" style="font-size: 14px; font-weight: 200;">hello</p>
-            </div>
-
-
-            <style>
-                #work-container {
-                    width: 200px;
-                    height: 100px;
-                    background-color: aliceblue;
-                    border-radius: 10px;
-                    border: 1.5px solid black;
-                }
-            </style>
             
          </section>
+         
         </main>
 
-        <h1>Patient Data</h1>
-        <button id="fetchData">Fetch Patient Data</button>
-        <div id="portfoliodata"></div>
-      
+        <button id="fetchData">fetch portfolio data</button>
+        
+        <div id="work-container">
+            <!-- <img style="width: 50px;  object-fit: cover;" src="/people + story screen.jpg" alt=" img">
+            <p id="title">My portfolio</p>
+            <p id="desc" style="font-size: 14px; font-weight: 200;"></p> -->
+        </div>  
+        
+       
         <script>
             document.getElementById('fetchData').addEventListener('click', async () => {
               try {
+                
+                
+                
                 const response = await fetch('http://localhost:3000/portfoliodata');
                 const data = await response.json();
                 
                 const workContainer = document.getElementById('work-container');
-          
+                workContainer.style.display = 'flex'
+                workContainer.style.flexWrap = 'wrap'
+                workContainer.style.justifyContent = 'space-evenly'
+                
                 data.forEach(item => {
                   const workTemplate = document.createElement('div');
                   workTemplate.className = 'work-template';
+                  workTemplate.style.padding = '20px'
+                  workTemplate.style.margin = '10px'
           
-                //   const img = document.createElement('img');
-                //   img.src = item.image;
-                //   img.alt = 'img';
-          
+                   const img = document.createElement('img');
+                   img.src = item.image;
+                   img.alt = 'img';
+                
                   const title = document.createElement('p');
                   title.id = 'title';
                   title.textContent = item.name;
@@ -121,6 +126,9 @@
                 const desc = document.createElement('p');
                 desc.id = 'desc';
                 desc.textContent = item.description;
+                desc.style.fontSize = '12px';
+                desc.style.fontWeight = 'normal';
+
 
                 workTemplate.appendChild(title);
                 workTemplate.appendChild(desc);
